@@ -64,7 +64,7 @@ export const App = () => {
       <ContactForm onSubmit={NameOnList} />
 
       <h2>Contacts</h2>
-      <Filter onChange={setFilter} />
+      <Filter filteredList={setFilter} />
       <ContactList
         contacts={showFilteredContacts()}
         onClick={deleteContact}
