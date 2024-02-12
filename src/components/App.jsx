@@ -5,25 +5,11 @@ import { ContactList } from './ContactList/ContactList';
 import { Filter } from './Filter/Filter';
 import PropTypes from 'prop-types'
 
-// export class App extends Component {
-//   state = {
-//     contacts: [
-//       { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-//       { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
-//       { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
-//       { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
-//     ],
-//     filter: '',
-//   };
-
 export const App = () => {
   const [contacts, setContacts] = useState([]);
   const [filter, setFilter] = useState('');
 
 
-  const handleFilterChange = newValue => {
-    setFilter(newValue);
-  };
 
   const addContact = (name, number) => {
     setContacts([
@@ -54,7 +40,7 @@ export const App = () => {
   
   // componentDidMount
   useEffect(() => {
-    setContacts(JSON.parse(localStorage.getItem('Contacts')));
+    setContacts(JSON.parse(localStorage.getItem('Contacts')) || []);
   }, []);
 
   // componentDidUpdate
@@ -78,7 +64,7 @@ export const App = () => {
       <ContactForm onSubmit={NameOnList} />
 
       <h2>Contacts</h2>
-      <Filter onChange={handleFilterChange} />
+      <Filter onChange={setFilter} />
       <ContactList
         contacts={showFilteredContacts()}
         onClick={deleteContact}
